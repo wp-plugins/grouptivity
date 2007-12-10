@@ -34,7 +34,7 @@
 Plugin Name: Email+ from Grouptivity
 Plugin URI: http://grouptivity.com/projects/wordpress/
 Description: Based on the popular share-this plugin from Alex King, this modifed version has the following changes 1. It utilizes Grouptivity's Email+ service and 2. Optionally tracks bookmarking statistics via your Grouptivity partner ID
-Version: 1.4.2
+Version: 1.4.3
 Author: Modified by Martin Logan
 Author URI: http://grouptivity.com/
 */
