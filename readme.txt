@@ -14,7 +14,11 @@ Grouptivity is the ultimate free "email this" plugin for driving word of mouth t
 Add instantly to any website next generation "Email this" link with discussions, stats, all bookmarking sites and more! 
 
 Grouptivity is a social content sharing and bookmarking plugin that offers three "must have" features: email this story, private discussions and forum, social bookmarking in one powerful, easy to use package. The Grouptivity powered button can be customized to deliver the following:
-Email This (with private discussions and forum), Bookmarking, and Cut and Paste with tracking and dashboard for your site
+
+* Email This (with private discussions and forum), 
+* Bookmarking, 
+* Cut and Paste
+* Tracking and dashboard for your site
 
 Grouptivity drives 3 times the traffic and ad monetization for bloggers. Your users become community members and bring their friends to your blog as they privately or publicly discuss your articles with their friends. They now have a single account to track all their emailed articles, bookmarks, discussions with friends.
 
