@@ -47,7 +47,6 @@ Yes. The steps are as follow:
 
 
 == Screenshots ==
-
 1. Email+ configuration - Add your Partner ID here.
 2. Where to add additional bookmarking services.
 
