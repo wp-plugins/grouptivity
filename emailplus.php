@@ -360,7 +360,7 @@ function gtvt_xy(id) {
 	cursor: default;
 	padding: 4px 5px 1px 5px;
 }
-#gtvt_form div.clear {
+#gtvt_form div.gtvt_clear {
 	clear: both;
 	float: none;
 }
@@ -612,7 +612,7 @@ function gtvt_share_form() {
 			<li id="gtvt_tab1" class="selected" onclick="gtvt_share_tab('1');"><?php _e('Email', 'grouptivity.com'); ?></li>
 			<li id="gtvt_tab2" onclick="gtvt_share_tab('2');"><?php _e('Bookmark', 'grouptivity.com'); ?></li>
 		</ul>
-		<div class="clear"></div>
+		<div class="gtvt_clear"></div>
 		<div id="gtvt_social">
 			<ul>
 <?php
@@ -621,7 +621,7 @@ function gtvt_share_form() {
 	}
 ?>
 			</ul>
-			<div class="clear"></div>
+			<div class="gtvt_clear"></div>
 			<div id="gtvt_done"></div>
 		</div>
 		<div id="gtvt_email">
@@ -844,7 +844,7 @@ function gtvt_page() {
 		margin: 0 0;
 		padding: 0;
 	}
-	div.clear {
+	div.gtvt_clear {
 		float: none;
 		clear: both;
 	}
@@ -956,13 +956,13 @@ var gtvt_posts= [];
 	}
 ?>
 			</ul>
-			<div class="clear"></div>
+			<div class="gtvt_clear"></div>
 			<div id="gtvt_done"></div>
 		</div>
 	</div>
 	
 	
-	<div class="clear"></div>
+	<div class="gtvt_clear"></div>
 	
 	<div id="content">
 		<span class="gtvt_date"><?php the_time('F d, Y'); ?></span>
@@ -971,7 +971,7 @@ var gtvt_posts= [];
 		<div class="gtvt_entry"><?php the_content(); ?></div>
 		<hr />
 		<p class="gtvt_return"><?php _e('Return to:', 'grouptivity.com'); ?> <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></p>
-		<div class="clear"></div>
+		<div class="gtvt_clear"></div>
 	</div>
 	
 	<div id="footer">
