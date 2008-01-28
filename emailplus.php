@@ -33,8 +33,8 @@
 
 Plugin Name: Email+ from Grouptivity
 Plugin URI: http://grouptivity.com/download/wordpress.html
-Description: Based on the popular share-this plugin from Alex King, this modifed version has the following changes 1. It utilizes Grouptivity's Email+ service and 2. Optionally tracks bookmarking statistics via your Grouptivity partner ID
-Version: 1.4.3
+Description: Based on the popular share-this plugin from Alex King, this modifed version has the following changes 1. It utilizes Grouptivity's Email+ service and 2. Optionally tracks bookmarking statistics via your Grouptivity partner ID. <a href="plugins.php?page=grouptivity/emailplus.php">Click here to add your Grouptivity partner ID.</a>
+Version: 1.4.3.1
 Author: Modified by Martin Logan
 Author URI: http://grouptivity.com/
 */
@@ -435,6 +435,7 @@ foreach ($social_sites as $key => $data) {
 .gtvt_cnp_link {
 	background: 1px 0 url(cutpaste2.jpg) no-repeat;
 	padding: 1px 20px 3px 0;
+	text-decoration:none;
 }
 <?php
 if (GTVT_SHOWICON) {
