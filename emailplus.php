@@ -140,7 +140,7 @@ $social_sites = array(
 // ============================================================
 
 //@define('AK_WPROOT', '../../../');
-@define('GTVT_FILEPATH', '/wp-content/plugins/emailplus/emailplus.php');
+@define('GTVT_FILEPATH', '/wp-content/plugins/grouptivity/emailplus.php');
 
 if (function_exists('load_plugin_textdomain')) {
 	load_plugin_textdomain('grouptivity.com');
@@ -494,7 +494,7 @@ function gtvt_js_header()
 function gtvt_touch( pid, svc, title, url )
 {
     // function body defined below
-	var mysack = new sack("<?php bloginfo( 'wpurl' ); ?>/wp-content/plugins/emailplus/emailplus_ajax.php" );
+	var mysack = new sack("<?php bloginfo( 'wpurl' ); ?>/wp-content/plugins/grouptivity/emailplus_ajax.php" );
 	mysack.execute = 1;
 	mysack.method = 'POST';
 	mysack.setVar( "pid", pid );
@@ -749,7 +749,7 @@ function gtvt_page() {
 	}
 	
 	body {
-		background: #fff url(<?php bloginfo('wpurl'); ?>/wp-content/plugins/emailplus/page_back.gif) repeat-x;
+		background: #fff url(<?php bloginfo('wpurl'); ?>/wp-content/plugins/grouptivity/page_back.gif) repeat-x;
 		font: 11px Verdana, sans-serif;
 		padding: 20px;
 		text-align: center;
@@ -866,7 +866,7 @@ function gtvt_page() {
 function gtvt_touch( pid, svc, title, url )
 {
     // function body defined below
-	var mysack = new sack("<?php bloginfo( 'wpurl' ); ?>/wp-content/plugins/emailplus/emailplus_ajax.php" );
+	var mysack = new sack("<?php bloginfo( 'wpurl' ); ?>/wp-content/plugins/grouptivity/emailplus_ajax.php" );
 	mysack.execute = 1;
 	mysack.method = 'POST';
 	mysack.setVar( "pid", pid );
