@@ -34,7 +34,7 @@
 Plugin Name: Email+ from Grouptivity
 Plugin URI: http://grouptivity.com/download/wordpress.html
 Description: Based on the popular share-this plugin from Alex King, this modifed version has the following changes 1. It utilizes Grouptivity's Email+ service and 2. Optionally tracks bookmarking statistics via your Grouptivity partner ID. <a href="plugins.php?page=grouptivity/emailplus.php">Click here to add your Grouptivity partner ID.</a>
-Version: 1.4.3.1
+Version: 1.4.4
 Author: Modified by Martin Logan
 Author URI: http://grouptivity.com/
 */
@@ -66,6 +66,18 @@ $social_sites = array(
 		'name' => 'Grouptivity'
 		, 'url' => 'http://apps.grouptivity.com/socialmail/saveplus.do?url={url}&title={title}&ctg=wordpress'
 	)
+	, 'google_bmarks' => array(
+		'name' => 'Google Bookmarks'
+		, 'url' => 'http://www.google.com/bookmarks/mark?op=edit&bkmk={url}&title={title}'
+	)
+	, 'facebook' => array(
+		'name' => 'Facebook'
+		, 'url' => 'http://www.facebook.com/share.php?u={url}&t={title}'
+	)
+	, 'windows_live' => array(
+		'name' => 'Windows Live'
+		, 'url' => 'https://favorites.live.com/quickadd.aspx?marklet=1&mkt=en-us&url={url}&title={title}&top=1'
+	)
 	, 'delicious' => array(
 		'name' => 'del.icio.us'
 		, 'url' => 'http://del.icio.us/post?url={url}&title={title}'
@@ -74,21 +86,25 @@ $social_sites = array(
 		'name' => 'Digg'
 		, 'url' => 'http://digg.com/submit?phase=2&url={url}&title={title}'
 	)
-	, 'furl' => array(
-		'name' => 'Furl'
-		, 'url' => 'http://furl.net/storeIt.jsp?u={url}&t={title}'
-	)
 	, 'yahoo_myweb' => array(
 		'name' => 'Yahoo! My Web'
 		, 'url' => 'http://myweb2.search.yahoo.com/myresults/bookmarklet?u={url}&t={title}'
+	)
+	, 'ask' => array(
+		'name' => 'Ask'
+		, 'url' => 'http://myjeeves.ask.com/mysearch/BookmarkIt?v=1.2&t=webpages&url={url}&title={title}'
+	)
+	, 'furl' => array(
+		'name' => 'Furl'
+		, 'url' => 'http://furl.net/storeIt.jsp?u={url}&t={title}'
 	)
 	, 'stumbleupon' => array(
 		'name' => 'StumbleUpon'
 		, 'url' => 'http://www.stumbleupon.com/submit?url={url}&title={title}'
 	)
-	, 'google_bmarks' => array(
-		'name' => 'Google Bookmarks'
-		, 'url' => '  http://www.google.com/bookmarks/mark?op=edit&bkmk={url}&title={title}'
+	, 'reddit' => array(
+		'name' => 'reddit'
+		, 'url' => 'http://reddit.com/submit?url={url}&title={title}'
 	)
 	, 'technorati' => array(
 		'name' => 'Technorati'
@@ -105,14 +121,6 @@ $social_sites = array(
 	, 'magnolia' => array(
 		'name' => 'ma.gnolia'
 		, 'url' => 'http://ma.gnolia.com/bookmarklet/add?url={url}&title={title}'
-	)
-	, 'reddit' => array(
-		'name' => 'reddit'
-		, 'url' => 'http://reddit.com/submit?url={url}&title={title}'
-	)
-	, 'windows_live' => array(
-		'name' => 'Windows Live'
-		, 'url' => 'https://favorites.live.com/quickadd.aspx?marklet=1&mkt=en-us&url={url}&title={title}&top=1'
 	)
 	, 'tailrank' => array(
 		'name' => 'Tailrank'
@@ -236,9 +244,7 @@ function gtvt_share(id) {
 			if (!$('gtvt_pid').value==''){
 				<?php print('$("gtvt_'.$key.'").removeEventListener(\'click\', gtvt_oc_touch, false);'."\n"); 
 				print('$("gtvt_'.$key.'").addEventListener(\'click\', gtvt_oc_touch, false);'."\n"); 
-				print('$("gtvt_'.$key.'").pid=$(\'gtvt_pid\').value;'."\n");
-				print('$("gtvt_'.$key.'").title=gtvt_posts[id].title;'."\n");
-				print('$("gtvt_'.$key.'").url=gtvt_posts[id].url;'."\n");
+				print('$("gtvt_'.$key.'").postid=id;'."\n");
 				print('$("gtvt_'.$key.'").svc=\''.$key.'\';'."\n");
 			?>
 			}
@@ -246,9 +252,7 @@ function gtvt_share(id) {
 			if (!$('gtvt_pid').value==''){
 				<?php print('$("gtvt_'.$key.'").detachEvent(\'onclick\', gtvt_oc_touch);'."\n"); 
 				print('$("gtvt_'.$key.'").attachEvent(\'onclick\', gtvt_oc_touch);'."\n"); 
-				print('$("gtvt_'.$key.'").pid=$(\'gtvt_pid\').value;'."\n");
-				print('$("gtvt_'.$key.'").title=gtvt_posts[id].title;'."\n");
-				print('$("gtvt_'.$key.'").url=gtvt_posts[id].url;'."\n");
+				print('$("gtvt_'.$key.'").postid=id;'."\n");
 				print('$("gtvt_'.$key.'").svc=\''.$key.'\';'."\n");
 				?>
 			}
@@ -278,19 +282,15 @@ function gtvt_share_url(base, url, title) {
 
 
 function gtvt_oc_touch(evt) {
-	var e_pid, e_title, e_url, e_svc;
+	var e_postid, e_svc;
 	var ie_var = "srcElement";
 	var moz_var = "target";
-	var prop_var = "pid";
 	// "target" for Mozilla, Netscape, Firefox et al. ; "srcElement" for IE
-	evt[moz_var] ? e_pid = evt[moz_var][prop_var] : e_pid = evt[ie_var][prop_var];
+	var prop_var = "postid";
+	evt[moz_var] ? e_postid = evt[moz_var][prop_var] : e_postid = evt[ie_var][prop_var];
 	prop_var = "svc";
 	evt[moz_var] ? e_svc = evt[moz_var][prop_var] : e_svc = evt[ie_var][prop_var];
-	prop_var = "title";
-	evt[moz_var] ? e_title = evt[moz_var][prop_var] : e_title = evt[ie_var][prop_var];
-	prop_var = "url";
-	evt[moz_var] ? e_url = evt[moz_var][prop_var] : e_url = evt[ie_var][prop_var];
-	gtvt_touch(e_pid, e_svc, unescape(e_title).replace(/"/,'&quot;'), unescape(e_url));
+	gtvt_touch($('gtvt_pid').value, e_svc, unescape(gtvt_posts[e_postid].title).replace(/"/,'&quot;'), unescape(gtvt_posts[e_postid].url), unescape(gtvt_posts[e_postid].category).replace(/"/,'&quot;'));
 
 }
 
@@ -485,26 +485,20 @@ add_action('wp_head', 'gtvt_head');
 
 function gtvt_js_header() 
 {
-  // use JavaScript SACK library for AJAX
-  wp_print_scripts( array( 'sack' ));
-
   // Define custom JavaScript function
 ?>
 <script type="text/javascript">
 //<![CDATA[
-function gtvt_touch( pid, svc, title, url )
+function gtvt_touch( pid, svc, title, url, category )
 {
-    // function body defined below
-	var mysack = new sack("<?php bloginfo( 'wpurl' ); ?>/wp-content/plugins/grouptivity/emailplus_ajax.php" );
-	mysack.execute = 1;
-	mysack.method = 'POST';
-	mysack.setVar( "pid", pid );
-	mysack.setVar( "svc", svc );
-	mysack.setVar( "title", title );
-	mysack.setVar( "url", url );
-	mysack.onError = function() { alert('AJAX error in touch' )};
-	mysack.runAJAX();
-
+	if(pid!='')
+		{
+		cbUrl = "http://apps.grouptivity.com/socialmail/groups/jsp/sTracker.jsp?pId="+encodeURIComponent(pid)+"&url="+encodeURIComponent(url)+"&sName="+encodeURIComponent(svc)+"&title="+encodeURIComponent(title)+"&aCatId="+encodeURIComponent(category);
+		var gtvtFrame = document.createElement('div');
+		frmInnerHTML='<iframe src="'+cbUrl+'" height="300" width="300" style="display:none;">';
+		gtvtFrame.innerHTML=frmInnerHTML;
+		document.body.appendChild(gtvtFrame);
+		}
 	return true;
 
 } // end of JavaScript function gtvt_touch
@@ -530,7 +524,6 @@ function gtvt_share_link($action = 'print') {
 		$onclick = '';
 	}
 	else {
-		// $onclick = 'onclick="gtvt_share(\''.$post->ID.'\', \''.urlencode(get_permalink($post->ID)).'\', \''.rawurlencode(get_the_title()).'\', \''.rawurlencode(get_bloginfo('name')).'\'); return false;"';
 		$onclick = 'onclick="gtvt_share(\''.$post->ID.'\'); return false;"';
 	}
 ?>
@@ -549,9 +542,14 @@ function gtvt_share_link($action = 'print') {
 	// escape single quote
 	$gtvt_excerpt = preg_replace("/'/","&#39;",$gtvt_excerpt);
 	$gtvt_excerpt = rawurlencode($gtvt_excerpt);
+	// Get the title
+	$gtvt_title = get_the_title();
+	//escape single quotes
+	$gtvt_title = preg_replace("/'/","&#39;",$gtvt_title);
+	$gtvt_title = rawurlencode($gtvt_title);
 ?>
 	<script type="text/javascript">
-	gtvt_posts[<?php print($post->ID); ?>] = {url: "<?php print rawurlencode(get_permalink($post->ID)); ?>", title: "<?php echo rawurlencode(get_the_title()); ?>", category: "<?php $cat = get_the_category(); $cat = $cat[0]; print(rawurlencode($cat->cat_name)); ?>", desc: "<?php print $gtvt_excerpt;?>"};
+	gtvt_posts[<?php print($post->ID); ?>] = {url: "<?php print rawurlencode(get_permalink($post->ID)); ?>", title: "<?php print $gtvt_title; ?>", category: "<?php $cat = get_the_category(); $cat = $cat[0]; print(rawurlencode($cat->cat_name)); ?>", desc: "<?php print $gtvt_excerpt;?>"};
 
 	</script>
 
@@ -606,7 +604,7 @@ function gtvt_share_form() {
 		$email = $user['comment_author_email'];
 	}
 ?>
-	<!-- Share This BEGIN -->
+	<!-- BEGIN -->
 	<div id="gtvt_form">
 		<a href="javascript:void($('gtvt_form').style.display='none');" class="gtvt_close"><?php _e('Close', 'grouptivity.com'); ?></a>
 		<ul class="tabs">
@@ -624,6 +622,7 @@ function gtvt_share_form() {
 			</ul>
 			<div class="gtvt_clear"></div>
 			<div id="gtvt_done"></div>
+<div align="center">Powered by <a href="http://www.grouptivity.com" target="_blank"><img align="top" src="http://appscdn.grouptivity.com/socialmail/groups/images/SmalFooterLogo.jpg"/></a></div>
 		</div>
 		<div id="gtvt_email">
 			<form action="http://apps.grouptivity.com/socialmail/emailplus.do" method="get" target="_blank" accept-charset="utf-8">
@@ -656,6 +655,7 @@ function gtvt_share_form() {
 					<input type="hidden" name="description" id="gtvtfrm_desc" value=""/>
 				</fieldset>
 			</form>
+<div>Powered by <a href="http://www.grouptivity.com" target="_blank"><img align="top" src="http://appscdn.grouptivity.com/socialmail/groups/images/SmalFooterLogo.jpg"/></a></div>
 		</div>
 	</div>
 	<!-- Share This END -->
@@ -857,26 +857,21 @@ function gtvt_page() {
 	</style>
 
 <?php do_action('gtvt_head'); 
-  // use JavaScript SACK library for AJAX
-  wp_print_scripts( array( 'sack' ));
 
   // Define custom JavaScript function
 ?>
 <script type="text/javascript">
 //<![CDATA[
-function gtvt_touch( pid, svc, title, url )
+function gtvt_touch( pid, svc, title, url, category )
 {
-    // function body defined below
-	var mysack = new sack("<?php bloginfo( 'wpurl' ); ?>/wp-content/plugins/grouptivity/emailplus_ajax.php" );
-	mysack.execute = 1;
-	mysack.method = 'POST';
-	mysack.setVar( "pid", pid );
-	mysack.setVar( "svc", svc );
-	mysack.setVar( "title", title );
-	mysack.setVar( "url", url );
-	mysack.onError = function() { alert('AJAX error in touch' )};
-	mysack.runAJAX();
-
+	if(pid!='')
+		{
+		cbUrl = "http://apps.grouptivity.com/socialmail/groups/jsp/sTracker.jsp?pId="+encodeURIComponent(pid)+"&url="+encodeURIComponent(url)+"&sName="+encodeURIComponent(svc)+"&title="+encodeURIComponent(title)+"&aCatId="+encodeURIComponent(category);
+		var gtvtFrame = document.createElement('div');
+		frmInnerHTML='<iframe src="'+cbUrl+'" height="300" width="300" style="display:none;">';
+		gtvtFrame.innerHTML=frmInnerHTML;
+		document.body.appendChild(gtvtFrame);
+		}
 	return true;
 
 } // end of JavaScript function gtvt_touch
@@ -951,7 +946,8 @@ var gtvt_posts= [];
 		$pid=get_option('emailplus_pid');
 		$ep_onclick='';
 		if (!pid=='') {
-			$ep_onclick=' onclick=\'gtvt_touch("'.get_option('emailplus_pid').'", "'.$key.'", "'.get_the_title().'", "'.get_permalink($id).'");\'';
+			$cat = get_the_category(); $cat = $cat[0]; 
+			$ep_onclick=' onclick=\'gtvt_touch("'.get_option('emailplus_pid').'", "'.$key.'", "'.get_the_title().'", "'.get_permalink($id).'", "'.$cat->cat_name.'");\'';
 		}
 		print('				<li><a href="'.$link.'" id="gtvt_'.$key.'" '.$ep_onclick.' target="_blank">'.$data['name'].'</a></li>'."\n");
 	}
