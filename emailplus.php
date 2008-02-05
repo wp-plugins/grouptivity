@@ -622,7 +622,7 @@ function gtvt_share_form() {
 			</ul>
 			<div class="gtvt_clear"></div>
 			<div id="gtvt_done"></div>
-<div align="center">Powered by <a href="http://www.grouptivity.com" target="_blank"><img align="top" src="http://appscdn.grouptivity.com/socialmail/groups/images/SmalFooterLogo.jpg"/></a></div>
+<div align="center">Powered by <a href="http://www.grouptivity.com" target="_blank"><img align="top" src="http://appscdn.grouptivity.com/socialmail/groups/images/SmalFooterLogo.jpg" border="0"/></a></div>
 		</div>
 		<div id="gtvt_email">
 			<form action="http://apps.grouptivity.com/socialmail/emailplus.do" method="get" target="_blank" accept-charset="utf-8">
@@ -655,7 +655,7 @@ function gtvt_share_form() {
 					<input type="hidden" name="description" id="gtvtfrm_desc" value=""/>
 				</fieldset>
 			</form>
-<div>Powered by <a href="http://www.grouptivity.com" target="_blank"><img align="top" src="http://appscdn.grouptivity.com/socialmail/groups/images/SmalFooterLogo.jpg"/></a></div>
+<div>Powered by <a href="http://www.grouptivity.com" target="_blank"><img align="top" src="http://appscdn.grouptivity.com/socialmail/groups/images/SmalFooterLogo.jpg" border="0"/></a></div>
 		</div>
 	</div>
 	<!-- Share This END -->
@@ -1000,7 +1000,7 @@ function emailplus_conf() {
 <div class="wrap">
 <h2><?php _e('Email+ Configuration'); ?></h2>
 <p><?php _e('Enter your Email+ Partner ID here.'); ?></p>
-		<p><?php _e('If you do not have a partner ID, please contact '); ?><a target="_blank" href="http://www.groptivity.com">Grouptivity</a><?php _e(' to get one. This will give you access to statistics for your bookmarks.'); ?></p>
+		<p><?php _e('If you do not have a partner ID, please contact '); ?><a target="_blank" href="http://www.grouptivity.com">Grouptivity</a><?php _e(' to get one. This will give you access to statistics for your bookmarks.'); ?></p>
 
 <form action="options.php" method="post" name="emailplus_frm" id="emailplus-conf" style="margin: auto; width: 25em; ">
 	<fieldset>
