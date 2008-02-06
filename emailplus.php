@@ -61,7 +61,7 @@ Author URI: http://grouptivity.com/
 // Find more URLs here: 
 // http://3spots.blogspot.com/2006/02/30-social-bookmarks-add-to-footer.html
 
-$social_sites = array(
+$gtvt_social_sites = array(
 	'grouptivity' => array(
 		'name' => 'Grouptivity'
 		, 'url' => 'http://apps.grouptivity.com/socialmail/saveplus.do?url={url}&title={title}&ctg=wordpress'
@@ -237,7 +237,7 @@ function gtvt_share(id) {
 	var offset = Position.cumulativeOffset(link);
 
 <?php
-	foreach ($social_sites as $key => $data) {
+	foreach ($gtvt_social_sites as $key => $data) {
 		print('	$("gtvt_'.$key.'").href = gtvt_share_url("'.$data['url'].'", gtvt_posts[id].url, gtvt_posts[id].title);'."\n");
 		?>
 		if (window.addEventListener) { //Mozilla family
@@ -390,7 +390,7 @@ function gtvt_xy(id) {
 	vertical-align: middle;
 }
 <?php
-foreach ($social_sites as $key => $data) {
+foreach ($gtvt_social_sites as $key => $data) {
 	print(
 '#gtvt_'.$key.' {
 	background-image: url('.$key.'.gif);
@@ -591,7 +591,7 @@ add_action('the_content', 'gtvt_add_share_link_to_content');
 add_action('the_content_rss', 'gtvt_add_share_link_to_content');
 
 function gtvt_share_form() {
-	global $post, $social_sites, $current_user;
+	global $post, $gtvt_social_sites, $current_user;
 
 	if (isset($current_user)) {
 		$user = get_currentuserinfo();
@@ -615,7 +615,7 @@ function gtvt_share_form() {
 		<div id="gtvt_social">
 			<ul>
 <?php
-	foreach ($social_sites as $key => $data) {
+	foreach ($gtvt_social_sites as $key => $data) {
 		print('				<li><a href="#" id="gtvt_'.$key.'" target="_blank">'.$data['name'].'</a></li>'."\n");
 	}
 ?>
@@ -694,7 +694,7 @@ function gtvt_hide_pop() {
 }
 
 function gtvt_page() {
-	global $social_sites, $gtvt_action, $current_user, $post;
+	global $gtvt_social_sites, $gtvt_action, $current_user, $post;
 	
 	$gtvt_action = 'page';
 	
@@ -931,7 +931,7 @@ var gtvt_posts= [];
 		<div id="gtvt_social" style="display:block;">
 			<ul>
 <?php
-	foreach ($social_sites as $key => $data) {
+	foreach ($gtvt_social_sites as $key => $data) {
 		$link = str_replace(
 			array(
 				'{url}'
