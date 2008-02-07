@@ -655,7 +655,7 @@ function gtvt_share_form() {
 					<input type="hidden" name="description" id="gtvtfrm_desc" value=""/>
 				</fieldset>
 			</form>
-<div>Powered by <a href="http://www.grouptivity.com" target="_blank"><img align="top" src="http://appscdn.grouptivity.com/socialmail/groups/images/SmalFooterLogo.jpg" border="0"/></a></div>
+<div align="center">Powered by <a href="http://www.grouptivity.com" target="_blank"><img align="top" src="http://appscdn.grouptivity.com/socialmail/groups/images/SmalFooterLogo.jpg" border="0"/></a></div>
 		</div>
 	</div>
 	<!-- Share This END -->
