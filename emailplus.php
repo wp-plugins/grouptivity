@@ -61,7 +61,7 @@ Author URI: http://grouptivity.com/
 // Find more URLs here: 
 // http://3spots.blogspot.com/2006/02/30-social-bookmarks-add-to-footer.html
 
-$social_sites = array(
+$gtvt_social_sites = array(
 	'grouptivity' => array(
 		'name' => 'Grouptivity'
 		, 'url' => 'http://apps.grouptivity.com/socialmail/saveplus.do?url={url}&title={title}&ctg=wordpress'
@@ -237,7 +237,7 @@ function gtvt_share(id) {
 	var offset = Position.cumulativeOffset(link);
 
 <?php
-	foreach ($social_sites as $key => $data) {
+	foreach ($gtvt_social_sites as $key => $data) {
 		print('	$("gtvt_'.$key.'").href = gtvt_share_url("'.$data['url'].'", gtvt_posts[id].url, gtvt_posts[id].title);'."\n");
 		?>
 		if (window.addEventListener) { //Mozilla family
@@ -390,7 +390,7 @@ function gtvt_xy(id) {
 	vertical-align: middle;
 }
 <?php
-foreach ($social_sites as $key => $data) {
+foreach ($gtvt_social_sites as $key => $data) {
 	print(
 '#gtvt_'.$key.' {
 	background-image: url('.$key.'.gif);
@@ -580,7 +580,7 @@ function gtvt_add_share_link_to_content($content) {
 	}
 	if ($doit) {
 		if (!is_feed() && GTVT_ADDCNP) { 
-			$content .= '<p class="gtvt_link"><a href="javascript:{var _mg56v=\'0.2\';var PartnerID=\''.get_option('emailplus_pid').'\';var Category=\'\';var MaxLmt=\'\';(function(){var d=document;var s;try{s=d.standardCreateElement(\'script\');}catch(e){}if(typeof(s)!=\'object\')s=d.createElement(\'script\');s.type=\'text/javascript\';s.src=\'http://cms.grouptivity.com/discussthis/javascripts/parseDOM.js\';s.id=\'c_grab_js\';d.getElementsByTagName(\'head\')[0].appendChild(s);})();}" class="gtvt_cnp_link" title="Cut and Paste">&nbsp;</a>'.gtvt_share_link('return').'</p>';
+			$content .= '<p class="gtvt_link"><a href="javascript:{var _mg56v=\'0.2\';var PartnerID=\''.get_option('emailplus_pid').'\';var Category=\'\';var MaxLmt=\'\';(function(){var d=document;var s;try{s=d.standardCreateElement(\'script\');}catch(e){}if(typeof(s)!=\'object\')s=d.createElement(\'script\');s.type=\'text/javascript\';s.src=\'http://cdn.grouptivity.com/discussthis/javascripts/parseDOM.js\';s.id=\'c_grab_js\';d.getElementsByTagName(\'head\')[0].appendChild(s);})();}" class="gtvt_cnp_link" title="Cut and Paste">&nbsp;</a>'.gtvt_share_link('return').'</p>';
 		} else {
 			$content .= '<p class="gtvt_link">'.gtvt_share_link('return').'</p>';
 		}
@@ -591,7 +591,7 @@ add_action('the_content', 'gtvt_add_share_link_to_content');
 add_action('the_content_rss', 'gtvt_add_share_link_to_content');
 
 function gtvt_share_form() {
-	global $post, $social_sites, $current_user;
+	global $post, $gtvt_social_sites, $current_user;
 
 	if (isset($current_user)) {
 		$user = get_currentuserinfo();
@@ -615,14 +615,14 @@ function gtvt_share_form() {
 		<div id="gtvt_social">
 			<ul>
 <?php
-	foreach ($social_sites as $key => $data) {
+	foreach ($gtvt_social_sites as $key => $data) {
 		print('				<li><a href="#" id="gtvt_'.$key.'" target="_blank">'.$data['name'].'</a></li>'."\n");
 	}
 ?>
 			</ul>
 			<div class="gtvt_clear"></div>
 			<div id="gtvt_done"></div>
-<div align="center">Powered by <a href="http://www.grouptivity.com" target="_blank"><img align="top" src="http://appscdn.grouptivity.com/socialmail/groups/images/SmalFooterLogo.jpg"/></a></div>
+<div align="center">Powered by <a href="http://www.grouptivity.com" target="_blank"><img align="top" src="http://appscdn.grouptivity.com/socialmail/groups/images/SmalFooterLogo.jpg" border="0"/></a></div>
 		</div>
 		<div id="gtvt_email">
 			<form action="http://apps.grouptivity.com/socialmail/emailplus.do" method="get" target="_blank" accept-charset="utf-8">
@@ -655,7 +655,7 @@ function gtvt_share_form() {
 					<input type="hidden" name="description" id="gtvtfrm_desc" value=""/>
 				</fieldset>
 			</form>
-<div>Powered by <a href="http://www.grouptivity.com" target="_blank"><img align="top" src="http://appscdn.grouptivity.com/socialmail/groups/images/SmalFooterLogo.jpg"/></a></div>
+<div align="center">Powered by <a href="http://www.grouptivity.com" target="_blank"><img align="top" src="http://appscdn.grouptivity.com/socialmail/groups/images/SmalFooterLogo.jpg" border="0"/></a></div>
 		</div>
 	</div>
 	<!-- Share This END -->
@@ -694,7 +694,7 @@ function gtvt_hide_pop() {
 }
 
 function gtvt_page() {
-	global $social_sites, $gtvt_action, $current_user, $post;
+	global $gtvt_social_sites, $gtvt_action, $current_user, $post;
 	
 	$gtvt_action = 'page';
 	
@@ -931,7 +931,7 @@ var gtvt_posts= [];
 		<div id="gtvt_social" style="display:block;">
 			<ul>
 <?php
-	foreach ($social_sites as $key => $data) {
+	foreach ($gtvt_social_sites as $key => $data) {
 		$link = str_replace(
 			array(
 				'{url}'
@@ -1000,7 +1000,7 @@ function emailplus_conf() {
 <div class="wrap">
 <h2><?php _e('Email+ Configuration'); ?></h2>
 <p><?php _e('Enter your Email+ Partner ID here.'); ?></p>
-		<p><?php _e('If you do not have a partner ID, please contact '); ?><a target="_blank" href="http://www.groptivity.com">Grouptivity</a><?php _e(' to get one. This will give you access to statistics for your bookmarks.'); ?></p>
+		<p><?php _e('If you do not have a partner ID, please contact '); ?><a target="_blank" href="http://www.grouptivity.com">Grouptivity</a><?php _e(' to get one. This will give you access to statistics for your bookmarks.'); ?></p>
 
 <form action="options.php" method="post" name="emailplus_frm" id="emailplus-conf" style="margin: auto; width: 25em; ">
 	<fieldset>
