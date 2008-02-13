@@ -580,7 +580,7 @@ function gtvt_add_share_link_to_content($content) {
 	}
 	if ($doit) {
 		if (!is_feed() && GTVT_ADDCNP) { 
-			$content .= '<p class="gtvt_link"><a href="javascript:{var _mg56v=\'0.2\';var PartnerID=\''.get_option('emailplus_pid').'\';var Category=\'\';var MaxLmt=\'\';(function(){var d=document;var s;try{s=d.standardCreateElement(\'script\');}catch(e){}if(typeof(s)!=\'object\')s=d.createElement(\'script\');s.type=\'text/javascript\';s.src=\'http://cms.grouptivity.com/discussthis/javascripts/parseDOM.js\';s.id=\'c_grab_js\';d.getElementsByTagName(\'head\')[0].appendChild(s);})();}" class="gtvt_cnp_link" title="Cut and Paste">&nbsp;</a>'.gtvt_share_link('return').'</p>';
+			$content .= '<p class="gtvt_link"><a href="javascript:{var _mg56v=\'0.2\';var PartnerID=\''.get_option('emailplus_pid').'\';var Category=\'\';var MaxLmt=\'\';(function(){var d=document;var s;try{s=d.standardCreateElement(\'script\');}catch(e){}if(typeof(s)!=\'object\')s=d.createElement(\'script\');s.type=\'text/javascript\';s.src=\'http://cdn.grouptivity.com/discussthis/javascripts/parseDOM.js\';s.id=\'c_grab_js\';d.getElementsByTagName(\'head\')[0].appendChild(s);})();}" class="gtvt_cnp_link" title="Cut and Paste">&nbsp;</a>'.gtvt_share_link('return').'</p>';
 		} else {
 			$content .= '<p class="gtvt_link">'.gtvt_share_link('return').'</p>';
 		}
