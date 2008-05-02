@@ -3,7 +3,7 @@ Contributors: martinlogan
 Tags: e-mail, Technorati, socialize, stumbleupon, MSN, search, share, recommend, email, button, google,  statistics, post, advanced, sociable, stats, social bookmarking, bookmark, del.icio.us, digg, share this, social, toolbar, widget, grouptivity, iPond
 Requires at least: 2.0.4
 Tested up to: 2.3.3
-Stable tag: 1.4.4
+Stable tag: 2.0.0
 
 Grouptivity is the ultimate free "email this" plugin for driving word of mouth traffic and social networking.
 Add instantly to any website next generation "Email this" link with discussions, stats, all bookmarking sites and more! 
