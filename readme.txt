@@ -2,13 +2,8 @@
 Contributors: martinlogan
 Tags: e-mail, Technorati, socialize, stumbleupon, MSN, search, share, recommend, email, button, google,  statistics, post, advanced, sociable, stats, social bookmarking, bookmark, del.icio.us, digg, share this, social, toolbar, widget, grouptivity, facebbok
 Requires at least: 2.0.4
-<<<<<<< .mine
 Tested up to: 2.5.0
 Stable tag: 2.0.0
-=======
-Tested up to: 2.3.3
-Stable tag: 2.0.0
->>>>>>> .r43964
 
 Using Share+  your shared content will be displayed in the Facebook application. So not only can your users view your content in Facebook but it is also ranked by number of times shared.
 
