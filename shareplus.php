@@ -116,50 +116,78 @@ function widget_grouptivity_init() {
 						a=document.createElement("a"); a.className="grouptivity-newsItemA"; a.target="_blank"; a.href=data.mostShared[i].url; 
 						a.appendChild(document.createTextNode(data.mostShared[i].title));
 						li.appendChild(a);
-						ul.appendChild(li);
 						<?php if ($showCount=="y"){?>
-						var j, imgSrc, img, typeind, count;
+						var j, imgSrc, img, typeind, count, alt, span;
 						// Show the couunts
-						li=document.createElement("li"); li.className="grouptivity-newsItem"; 
+						li.appendChild(document.createElement("br"));
+						span=document.createElement("span");
 						for (j=0;j<data.mostShared[i].shareStats.length;j++) {
 							typeind=data.mostShared[i].shareStats[j].typeind;
 							count=data.mostShared[i].shareStats[j].count;
-							switch (typeind) {
+							alt="Shared "+count+" time"+(count==1?"":"s");
+							// Some need special treatment
+							switch (typeind.toLowerCase()) {
 							case "sharing":
 								imgSrc="http://cdn.grouptivity.com/main/api/webjs/images/email.gif";
 								break;
-							case "GoogleBookmarks":
+							case "digg":
+								imgSrc="http://cdn.grouptivity.com/main/api/webjs/images/"+typeind.toLowerCase()+".gif";
+								alt="Dugg "+count+" time"+(count==1?"":"s")+" on Digg";
+								break;
+							case "googlebookmarks":
 								imgSrc="http://cdn.grouptivity.com/main/api/webjs/images/google.gif";
+								alt=alt+" on Google Bookmarks";
 								break;
-							case "WindowsLive":
+							case "grouptivity":
+								imgSrc="http://cdn.grouptivity.com/main/api/webjs/images/"+typeind.toLowerCase()+".gif";
+								alt="Saved "+count+" time"+(count==1?"":"s")+" on Grouptivity";
+								break;
+							case "misterwong":
+								imgSrc="http://cdn.grouptivity.com/main/api/webjs/images/"+typeind.toLowerCase()+".gif";
+								alt=alt+" on Mister Wong";
+								break;
+							case "stumbleupon":
+								imgSrc="http://cdn.grouptivity.com/main/api/webjs/images/"+typeind.toLowerCase()+".gif";
+								alt="Stumbled "+count+" time"+(count==1?"":"s")+" on StumbleUpon";
+								break;
+							case "windowslive":
 								imgSrc="http://cdn.grouptivity.com/main/api/webjs/images/windows.gif";
+								alt=alt+" on Windows Live";
 								break;
-							case "YahooWeb":
+							case "yahooweb":
 								imgSrc="http://cdn.grouptivity.com/main/api/webjs/images/yahoo.gif";
+								alt=alt+" on Yahoo! MyWeb";
 								break;
-							case "YahooBookmarks":
+							case "yahoobookmarks":
 								imgSrc="http://cdn.grouptivity.com/main/api/webjs/images/yahoobm.gif";
+								alt=alt+" on Yahoo! Bookmarks";
 								break;
-							case "Technocrati":
+							case "technocrati":
 								//Oops! embasassing spelling faux pas
 								imgSrc="http://cdn.grouptivity.com/main/api/webjs/images/technorati.gif";
 								// $bkmark->typeind="Technorati";
 								break;
+							case "twitter":
+								imgSrc="http://cdn.grouptivity.com/main/api/webjs/images/"+typeind.toLowerCase()+".gif";
+								alt=count+" tweet"+(count==1?"":"s")+" on Twitter";
+								break;
 							default:
 								imgSrc="http://cdn.grouptivity.com/main/api/webjs/images/"+typeind.toLowerCase()+".gif";
+								alt=alt+" on "+typeind;
 							}
-							img=document.createElement("img"); img.align="bottom"; img.border="0"; img.title=typeind; img.alt=typeind; img.src=imgSrc;
+							img=document.createElement("img"); img.align="bottom"; img.border="0"; img.title=alt; img.alt=alt; img.src=imgSrc;
 							if (typeind==="sharing") {
-								li.insertBefore(document.createTextNode(" "+count+" "), li.firstChild);
-								li.insertBefore(img, li.firstChild);
+								span.insertBefore(document.createTextNode(" "+count+" "), span.firstChild);
+								span.insertBefore(img, span.firstChild);
 
 							} else if (typeind!=="reading") {
-								li.appendChild(img); 
-								li.appendChild(document.createTextNode(" "+count+" "));
+								span.appendChild(img); 
+								span.appendChild(document.createTextNode(" "+count+" "));
 							}
-							ul.appendChild(li);
 						}
+						li.appendChild(span);
 						<?php } ?>
+						ul.appendChild(li);
 					}
 					//Append More link
 					li=document.createElement("li");

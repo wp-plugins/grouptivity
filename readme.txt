@@ -2,8 +2,8 @@
 Contributors: martinlogan
 Tags: plugin, links, share, sharing, social bookmarking, content monetization, monetize my blog, social bookmarks, email this, clipping service, widget, Toolbar, social, share this, Digg, del.icio.us, bookmark, viral, stats, advanced, Post, statistics, google, button, email, recommend, Share, search, msn, stumbleupon, socialize, technorati, e-mail, grouptivity, iPond, Twitter, Digg, Reddit, myspace, facebook, browser
 Requires at least: 2.0.4
-Tested up to: 2.6.5
-Stable tag: 2.1.0
+Tested up to: 2.7
+Stable tag: 2.0.0
 
 Not just another sharing plugin. Share+ gives readers a simple way to save, share and discover your top content with friends, family and co-workers.
 == Description ==
@@ -59,6 +59,9 @@ Yes.
 1. Re-arrange the list and remove items as you wish. (This will be part of the administration screen in a later release)
 
 == Screenshots ==
-1. Email+ configuration - Add your Partner ID here.
-2. Where to add additional bookmarking services.
+1. Share+ configuration - Add your Partner ID here.
+2. Most shared sidebar widget
+3. The Share+ button on a site
+4. Share+ widget after being clicked
+5. Most Shared configuration
 
