@@ -59,7 +59,7 @@ Yes.
 1. Re-arrange the list and remove items as you wish. (This will be part of the administration screen in a later release)
 
 == Screenshots ==
-1. Share+ configuration - Add your Partner ID here.
+1. Share+ configuration - Add your Publisher ID here.
 2. Most shared sidebar widget
 3. The Share+ button on a site
 4. Share+ widget after being clicked
