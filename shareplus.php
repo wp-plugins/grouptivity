@@ -29,6 +29,7 @@ Author URI: http://grouptivity.com/
 // set this to false if you do not want to automatically add the Grouptivity Share+ link to items in your feed
 
 @define('GTVT_BTNIMAGE', 'http://cdn.grouptivity.com/main/api/webjs/images/shareplus.gif');
+@define('GTVT_BTNIMAGECNT', 'http://grouptivityread.appspot.com/image');
 // set this to false if you do not want to automatically add the Grouptivity Share+ link to items in your feed
 
 
@@ -455,7 +456,12 @@ function gtvt_add_link($content)
 	$gtvtSummary =  $gtvtExcerpt;
 
 	/* Get URL to Share+ button */
-	$gtvtIMG = GTVT_BTNIMAGE;
+	if (is_home()) {
+		$gtvtIMG = GTVT_BTNIMAGE;
+	} else {
+		$gtvtIMG = GTVT_BTNIMAGECNT.'?url='.$gtvtURL.'&pId='.$gvPartnerId;
+	}
+
 
 	/* Add Grouptivity button at the bottom of the post */
 	$gtvtShareHref = build_query_string (get_permalink($post->ID),"gvtv-action","share");
