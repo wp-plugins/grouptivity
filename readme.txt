@@ -3,7 +3,7 @@ Contributors: martinlogan
 Tags: plugin, links, share, sharing, social bookmarking, content monetization, monetize my blog, social bookmarks, email this, clipping service, widget, Toolbar, social, share this, Digg, del.icio.us, bookmark, viral, stats, advanced, Post, statistics, google, button, email, recommend, Share, search, msn, stumbleupon, socialize, technorati, e-mail, grouptivity, iPond, Twitter, Digg, Reddit, myspace, facebook, browser
 Requires at least: 2.2 (jQuery)
 Tested up to: 2.7
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 
 Not just another sharing plugin. Share+ gives readers a simple way to save, share and discover your top content with friends, family and co-workers.
 == Description ==
