@@ -456,11 +456,14 @@ function gtvt_add_link($content)
 	$gtvtSummary =  $gtvtExcerpt;
 
 	/* Get URL to Share+ button */
-	if (is_home()) {
+	// if (is_home()) {
 		$gtvtIMG = GTVT_BTNIMAGE;
-	} else {
-		$gtvtIMG = GTVT_BTNIMAGECNT.'?url='.$gtvtURL.'&pId='.$gvPartnerId;
-	}
+	// } else {
+	//	$grouptivity_options = get_option('grouptivity_options');
+	//	if ($grouptivity_options) {$gvPartnerId = $grouptivity_options['partnerId'];}
+
+	//	$gtvtIMG = GTVT_BTNIMAGECNT.'?url='.$gtvtURL.'&pId='.$gvPartnerId;
+	//}
 
 
 	/* Add Grouptivity button at the bottom of the post */
@@ -475,7 +478,7 @@ function gtvt_add_link($content)
 
 		if (!$gtvtShowShareForm) // Normal
 		{
-			$content .= '<a hef="'.$gtvtShareHref.'"><img id="gtvt_link_'.$gtvtPostID.'" title="'.$gtvtInfo.'" onclick="gtvtShowPopUp(this,unescape(\''.$gtvtTitle.'\'),\''.$gtvtURL.'\',\''.$gtvtCategory.'\',unescape(\''.$gtvtSummary.'\'));return false;" src="'.$gtvtIMG.'" border="0"; /></a>';
+			$content .= '<a hef="'.$gtvtShareHref.'"><img id="gtvt_link_'.$gtvtPostID.'" title="'.$gtvtInfo.'" onclick="gtvtShowPopUp(this,unescape(\''.mb_convert_encoding( rawurldecode($gtvtTitle), "utf-8", "HTML-ENTITIES" ).'\'),\''.$gtvtURL.'\',\''.$gtvtCategory.'\',unescape(\''.$gtvtSummary.'\'));return false;" src="'.$gtvtIMG.'" border="0"; /></a>';
 		} else
 		{
 			// Never reached becaused of note above
