@@ -10,7 +10,7 @@ if($_POST['Submit']) {
 	$grouptivity_options['hideSocial'] 	= intval(trim($_POST['hideSocial']));
 
 	$grouptivity_options['emailNote'] 	= addslashes($_POST['emailNote']);
-	// $grouptivity_options['subjectPrefix'] 	= addslashes($_POST['subjectPrefix']);
+	$grouptivity_options['subjectPrefix'] 	= addslashes($_POST['subjectPrefix']);
 	$grouptivity_options['borderColor'] 	= addslashes($_POST['borderColor']);
 	$grouptivity_options['shadowColor'] 	= addslashes($_POST['shadowColor']);
 	$grouptivity_options['bannerColor'] 	= addslashes($_POST['bannerColor']);
@@ -116,12 +116,12 @@ $plugin_uri = get_option('siteurl')."/wp-content/plugins/grouptivity/";
 									<input type="text" name="emailNote" width="8" value="<?php echo $grouptivity_options['emailNote'] ?>" /> <span style="font-size:11px;color:#999999">Example: "Check this out....."</span>
 								</td>
 							</tr>
-							<!-- <tr valign="top">
+							<tr valign="top">
 								<th align="left" width="30%"><?php _e('Email Subject Prefix'); ?></th>
 								<td align="left">
 									<input type="text" name="subjectPrefix" width="8" value="<?php echo $grouptivity_options['subjectPrefix'] ?>" /> <span style="font-size:11px;color:#999999">Example: "Let&#39;s discuss.."</span>
 								</td>
-							</tr> -->
+							</tr>
 							<tr valign="top">
 								<th align="left" width="30%"><?php _e('Border Color'); ?></th>
 								<td align="left">
